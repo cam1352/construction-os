@@ -1,0 +1,49 @@
+{
+  "name": "construction_os",
+  "version": "1.0.0",
+  "description": "Construction Business OS and ERP Platform",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push --accept-data-loss",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:init": "prisma generate && prisma db push --accept-data-loss && tsx prisma/seed.ts",
+    "db:reset": "prisma db push --force-reset --accept-data-loss && tsx prisma/seed.ts",
+    "db:verify": "tsx prisma/verify.ts",
+    "test:db": "tsx prisma/verify.ts",
+    "test:agents": "tsx scripts/test_agents.ts",
+    "server": "tsx src/server/server.ts",
+    "test:ui": "tsx scripts/test_ui.ts",
+    "dev": "next dev || tsx src/server/server.ts",
+    "build": "next build",
+    "start": "next start || tsx src/server/server.ts",
+    "test": "npm run db:verify && npm run test:agents && npm run test:ui"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.2.0",
+    "dotenv": "^16.4.7",
+    "next": "^14.2.23",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.19",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "prisma": "^6.2.0",
+    "tailwindcss": "^3.4.17",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
