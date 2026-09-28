@@ -7,15 +7,22 @@ export default function DashboardPage() {
   return (
     <div className="space-y-6">
       {/* Top Welcome & System Status Bar */}
-      <div className="bg-gradient-to-r from-slate-900 via-sky-900 to-slate-900 rounded-2xl p-6 text-white shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-gradient-to-r from-slate-900 via-sky-900 to-slate-900 rounded-2xl p-6 text-white shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-4 relative">
+        {/* Close Button */}
+        <a href="/how-it-works" className="absolute top-4 right-4 text-white/50 hover:text-white transition bg-white/10 hover:bg-white/20 rounded-full p-1.5 flex items-center justify-center">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </a>
+
         <div>
           <div className="flex items-center space-x-2 text-sky-400 text-xs font-mono font-semibold uppercase tracking-wider mb-1">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
             <span>Zero-API Mode • Self-Contained PoC</span>
           </div>
-          <h2 className="text-2xl font-bold tracking-tight">Construction Business OS Dashboard</h2>
-          <p className="text-slate-300 text-sm mt-1 max-w-2xl">
-            Centralized ERP control center orchestrating CRM pipelines, construction field operations, and autonomous AI agents.
+          <h2 className="text-2xl font-bold tracking-tight">Business Dev App Dashboard</h2>
+          <p className="text-slate-300 text-sm mt-1 max-w-2xl pr-8">
+            Centralized ERP control center orchestrating CRM pipelines, business development operations, and autonomous AI agents.
           </p>
         </div>
 

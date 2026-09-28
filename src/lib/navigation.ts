@@ -1,5 +1,5 @@
 /**
- * Centralized Navigation Configuration for Construction OS
+ * Centralized Navigation Configuration for Grow Your Business
  * 
  * Defines all 15 navigation routes across 3 domains:
  * 1. CRM Domain (5 routes): Leads, Customers, Invoices, Payments, Communications

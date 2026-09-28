@@ -77,7 +77,7 @@ export function renderDashboardHtml(
               <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
               <span>Zero-API Mode • Self-Contained PoC</span>
             </div>
-            <h2 class="text-2xl font-bold tracking-tight">Construction Business OS Dashboard</h2>
+            <h2 class="text-2xl font-bold tracking-tight">Grow Your Business Dashboard</h2>
             <p class="text-slate-300 text-sm mt-1 max-w-2xl">
               Centralized ERP control center orchestrating CRM pipelines, construction field operations, and autonomous AI agents.
             </p>
@@ -205,7 +205,7 @@ export function renderDashboardHtml(
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <div class="text-xs font-semibold text-sky-600 uppercase tracking-wider mb-1">
-              Construction OS &bull; Module
+              Grow Your Business &bull; Module
             </div>
             <h1 class="text-2xl font-bold text-slate-900">${currentNavItem.name}</h1>
             <p class="text-sm text-slate-500">${currentNavItem.description}</p>
@@ -256,7 +256,7 @@ export function renderDashboardHtml(
       <div class="bg-white rounded-xl border border-slate-200 p-12 text-center shadow-sm space-y-4">
         <h2 class="text-3xl font-bold text-slate-900">404 - Route Not Found</h2>
         <p class="text-sm text-slate-500 max-w-md mx-auto">
-          The requested route <code class="font-mono bg-slate-100 px-1.5 py-0.5 rounded text-slate-800">${currentPath}</code> does not exist in the Construction OS registry.
+          The requested route <code class="font-mono bg-slate-100 px-1.5 py-0.5 rounded text-slate-800">${currentPath}</code> does not exist in the Grow Your Business registry.
         </p>
         <div class="pt-4">
           <a href="/" class="px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white rounded-lg text-xs font-medium transition shadow-sm">
@@ -273,7 +273,7 @@ export function renderDashboardHtml(
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Construction Business OS & ERP Platform</title>
+  <title>Grow Your Business & ERP Platform</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
@@ -294,7 +294,7 @@ export function renderDashboardHtml(
             ⚡
           </div>
           <div class="flex flex-col">
-            <span class="font-bold text-white text-sm tracking-wide">CONSTRUCTION OS</span>
+            <span class="font-bold text-white text-sm tracking-wide">Grow Your Business</span>
             <span class="text-[10px] text-sky-400 font-mono">ERP & AGENT MGR</span>
           </div>
         </a>
@@ -327,7 +327,7 @@ export function renderDashboardHtml(
           </span>
         </div>
         <div class="mt-1 text-[10px] text-slate-600">
-          Construction OS v1.0.0 (Zero-API)
+          Grow Your Business v1.0.0 (Zero-API)
         </div>
       </div>
     </aside>
@@ -341,7 +341,7 @@ export function renderDashboardHtml(
             🏗️
           </div>
           <div>
-            <h1 class="text-base font-bold text-slate-900 leading-tight">Construction Business OS</h1>
+            <h1 class="text-base font-bold text-slate-900 leading-tight">Grow Your Business</h1>
             <p class="text-xs text-slate-500">Autonomous ERP & Multi-Agent Operations</p>
           </div>
         </div>

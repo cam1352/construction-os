@@ -11,7 +11,7 @@ export function Header() {
             </svg>
           </div>
           <div>
-            <h1 className="text-base font-bold text-slate-900 leading-tight">Construction Business OS</h1>
+            <h1 className="text-base font-bold text-slate-900 leading-tight">Grow Your Business</h1>
             <p className="text-xs text-slate-500">Autonomous ERP & Multi-Agent Operations</p>
           </div>
         </div>

@@ -1,9 +1,9 @@
-﻿export default function HowItWorks() {
+export default function HowItWorks() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans">
       {/* Navigation */}
       <nav className="flex items-center justify-between p-6 max-w-6xl mx-auto">
-        <div className="text-2xl font-black tracking-tighter text-blue-600">BuilderOS.</div>
+        <div className="text-2xl font-black tracking-tighter text-blue-600">Business Dev App.</div>
         <div className="space-x-4">
           <a href="/login" className="text-sm font-semibold text-slate-600 hover:text-slate-900">Login</a>
           <a href="/signup" className="px-5 py-2 text-sm font-bold text-white bg-blue-600 rounded-full hover:bg-blue-700">Get Started</a>
@@ -13,10 +13,10 @@
       {/* Hero Section */}
       <main className="max-w-4xl mx-auto px-6 py-20 text-center">
         <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight mb-6">
-          Put your entire construction business on <span className="text-blue-600">Autopilot.</span>
+          Put your entire business development on <span className="text-blue-600">Autopilot.</span>
         </h1>
         <p className="text-xl text-slate-500 mb-10 max-w-2xl mx-auto">
-          BuilderOS deploys a 100+ AI bot swarm to handle your leads, estimating, scheduling, and billing. Hook up your business in 5 minutes and let the AI do the heavy lifting.
+          Business Dev App deploys a 100+ AI bot swarm to handle your leads, estimating, scheduling, and outreach. Hook up your business in 5 minutes and let the AI do the heavy lifting.
         </p>
         <button className="px-8 py-4 text-lg font-bold text-white bg-blue-600 rounded-full shadow-lg hover:bg-blue-700 transition transform hover:scale-105">
           Connect Your Business Today
@@ -65,7 +65,7 @@
       <section className="bg-slate-900 text-white py-20 text-center">
         <h2 className="text-3xl font-bold mb-6">Ready to scale without the stress?</h2>
         <p className="text-slate-400 mb-10 max-w-xl mx-auto">
-          Whether you are a solo contractor or managing a 50-person crew, BuilderOS adapts to your size and automates the rest.
+          Whether you are a solo contractor or managing a 50-person agency, Business Dev App adapts to your size and automates the rest.
         </p>
         <button className="px-8 py-4 text-lg font-bold text-slate-900 bg-white rounded-full shadow-lg hover:bg-slate-100 transition">
           Start Your Free Trial

@@ -119,7 +119,7 @@ export async function startServer(port: number = Number(process.env.PORT) || 300
     server.listen(port, () => {
       const addr = server.address();
       const actualPort = typeof addr === "object" && addr ? addr.port : port;
-      console.log(`[Construction OS UI] Server listening at http://localhost:${actualPort}`);
+      console.log(`[Grow Your Business UI] Server listening at http://localhost:${actualPort}`);
 
       resolve({
         server,
@@ -137,7 +137,7 @@ export async function startServer(port: number = Number(process.env.PORT) || 300
 if (import.meta.url === `file://${process.argv[1].replace(/\\/g, "/")}` || process.argv[1]?.endsWith("server.ts")) {
   const port = Number(process.env.PORT) || 3000;
   startServer(port).catch((err) => {
-    console.error("[Construction OS UI] Failed to start server:", err);
+    console.error("[Grow Your Business UI] Failed to start server:", err);
     process.exit(1);
   });
 }

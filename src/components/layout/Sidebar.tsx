@@ -17,7 +17,7 @@ export function Sidebar({ currentPath = "/" }: SidebarProps) {
             </svg>
           </div>
           <div className="flex flex-col">
-            <span className="font-bold text-white text-sm tracking-wide">CONSTRUCTION OS</span>
+            <span className="font-bold text-white text-sm tracking-wide">Grow Your Business</span>
             <span className="text-[10px] text-sky-400 font-mono">ERP & AGENT MGR</span>
           </div>
         </a>
@@ -96,7 +96,7 @@ export function Sidebar({ currentPath = "/" }: SidebarProps) {
           </span>
         </div>
         <div className="mt-1 text-[10px] text-slate-600">
-          Construction OS v1.0.0 (Zero-API)
+          Grow Your Business v1.0.0 (Zero-API)
         </div>
       </div>
     </aside>

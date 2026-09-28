@@ -4,7 +4,7 @@ import { Sidebar } from "../components/layout/Sidebar";
 import { Header } from "../components/layout/Header";
 
 export const metadata = {
-  title: "Construction Business OS & ERP Platform",
+  title: "Grow Your Business & ERP Platform",
   description: "Next-generation ERP and Autonomous Multi-Agent Platform for General Contractors",
 };
 
