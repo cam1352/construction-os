@@ -28,6 +28,14 @@ export const NAVIGATION_CONFIG: NavGroup[] = [
     title: "CRM",
     items: [
       {
+        id: "campaigns",
+        name: "Email Campaigns",
+        href: "/crm/campaigns",
+        description: "Upload scraped lists & send mass emails",
+        iconName: "Mail",
+        badge: "Blast",
+      },
+      {
         id: "leads",
         name: "Leads",
         href: "/crm/leads",
