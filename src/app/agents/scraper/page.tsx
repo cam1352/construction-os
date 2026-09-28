@@ -1,116 +1,131 @@
-import React from "react";
+﻿"use client";
+import React, { useState } from "react";
+import { Search, Copy, CheckCircle2, Globe, AlertCircle, RefreshCw } from "lucide-react";
 
 export default function ScraperAgentPage() {
-  const harvestStats = {
-    totalHarvested: 580,
-    crmDuplicatesSkipped: 142,
-    newLeadsCreated: 438,
-    activeSources: ["YellowPages BC", "Houzz Vancouver", "BuildZoom Trade Directory"],
+  const [url, setUrl] = useState("");
+  const [status, setStatus] = useState("idle"); // idle, scraping, success, error
+  const [results, setResults] = useState<string[]>([]);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [copied, setCopied] = useState(false);
+
+  const handleScrape = async () => {
+    if (!url.startsWith("http")) {
+      setErrorMsg("Please enter a valid URL starting with http:// or https://");
+      return;
+    }
+    
+    setStatus("scraping");
+    setErrorMsg("");
+    setResults([]);
+
+    try {
+      const res = await fetch("/api/scraper", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url })
+      });
+      
+      const data = await res.json();
+      
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to scrape URL");
+      }
+
+      setResults(data.emails || []);
+      setStatus("success");
+    } catch (err: any) {
+      setErrorMsg(err.message);
+      setStatus("error");
+    }
   };
 
-  const recentHarvestedLeads = [
-    {
-      company: "Fraser Valley Framing & Construction",
-      contact: "Dan Fraser",
-      trade: "Framing & Carpentry",
-      email: "dan@fraservalleyframing.example",
-      city: "Abbotsford, BC",
-      status: "SAVED_TO_CRM",
-      date: "12 mins ago",
-    },
-    {
-      company: "Apex Drywall Systems",
-      contact: "Marco Rossi",
-      trade: "Drywall Systems",
-      email: "marco@apexdrywall.example",
-      city: "Vancouver, BC",
-      status: "DUPLICATE_SKIPPED",
-      date: "35 mins ago",
-    },
-    {
-      company: "Coastal Electric & Automation",
-      contact: "Evelyn Reed",
-      trade: "Electrical",
-      email: "evelyn@coastalelectric.example",
-      city: "Burnaby, BC",
-      status: "SAVED_TO_CRM",
-      date: "1 hour ago",
-    },
-  ];
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(results.join("\n"));
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <div className="text-xs font-semibold text-purple-600 uppercase tracking-wider mb-1">
-            AI Agent Control Center &bull; Autonomous Lead Harvesting
-          </div>
-          <h1 className="text-2xl font-bold text-slate-900">Web Scraper Control Center</h1>
-          <p className="text-sm text-slate-500">
-            Autonomous trade directory scraping, contractor email extraction, deduplication, and CRM lead ingestion.
-          </p>
+    <div className="space-y-6 max-w-5xl">
+      <div>
+        <div className="text-xs font-semibold text-purple-600 uppercase tracking-wider mb-1">
+          AI Agent Control Center &bull; Live Scraper Engine
         </div>
-        <div className="flex items-center space-x-2">
-          <button className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-xs font-medium transition shadow-sm">
-            Run Directory Harvester
+        <h1 className="text-2xl font-bold text-slate-900">Web Scraper Control Center</h1>
+        <p className="text-sm text-slate-500 mt-1">
+          Enter a target directory or website URL. The engine will extract all valid email addresses for your campaigns.
+        </p>
+      </div>
+
+      <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+        <div className="flex gap-4">
+          <div className="flex-1 relative">
+            <Globe className="w-5 h-5 absolute left-3.5 top-3.5 text-slate-400" />
+            <input 
+              type="text" 
+              placeholder="https://example-directory.com/plumbers" 
+              value={url}
+              onChange={e => setUrl(e.target.value)}
+              className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:outline-none transition-all"
+            />
+          </div>
+          <button 
+            onClick={handleScrape}
+            disabled={status === 'scraping' || !url}
+            className="bg-purple-600 hover:bg-purple-700 disabled:bg-slate-300 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-md shadow-purple-600/20 flex items-center gap-2"
+          >
+            {status === 'scraping' ? (
+              <RefreshCw className="w-5 h-5 animate-spin" />
+            ) : (
+              <Search className="w-5 h-5" />
+            )}
+            {status === 'scraping' ? 'Scraping...' : 'Harvest Emails'}
           </button>
         </div>
+
+        {errorMsg && (
+          <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-xl text-sm text-red-600 flex items-center gap-2">
+            <AlertCircle className="w-4 h-4" />
+            {errorMsg}
+          </div>
+        )}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="bg-white p-4 rounded-xl border border-slate-200">
-          <div className="text-xs text-slate-500 font-semibold uppercase">Total Leads Harvested</div>
-          <div className="text-2xl font-bold text-slate-900 mt-1">{harvestStats.totalHarvested}</div>
+      {status === 'success' && (
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+          <div className="bg-slate-50 border-b border-slate-200 p-4 flex justify-between items-center">
+            <div className="font-bold text-slate-800 flex items-center gap-2">
+              <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+              Found {results.length} Emails
+            </div>
+            <button 
+              onClick={copyToClipboard}
+              disabled={results.length === 0}
+              className="text-xs font-bold px-4 py-2 bg-slate-200 hover:bg-slate-300 rounded-lg transition-colors flex items-center gap-2 text-slate-700 disabled:opacity-50"
+            >
+              {copied ? <CheckCircle2 className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
+              {copied ? 'Copied to Clipboard!' : 'Copy All'}
+            </button>
+          </div>
+          
+          <div className="p-0">
+            {results.length > 0 ? (
+              <ul className="divide-y divide-slate-100 max-h-[500px] overflow-y-auto">
+                {results.map((email, idx) => (
+                  <li key={idx} className="px-6 py-3 text-sm font-mono text-slate-600 hover:bg-slate-50">
+                    {email}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div className="p-8 text-center text-slate-500">
+                No valid email addresses were found on this page.
+              </div>
+            )}
+          </div>
         </div>
-        <div className="bg-white p-4 rounded-xl border border-slate-200">
-          <div className="text-xs text-slate-500 font-semibold uppercase">CRM Duplicates Blocked</div>
-          <div className="text-2xl font-bold text-amber-600 mt-1">{harvestStats.crmDuplicatesSkipped}</div>
-        </div>
-        <div className="bg-white p-4 rounded-xl border border-slate-200">
-          <div className="text-xs text-slate-500 font-semibold uppercase">New Qualified Leads</div>
-          <div className="text-2xl font-bold text-emerald-600 mt-1">{harvestStats.newLeadsCreated}</div>
-        </div>
-      </div>
-
-      <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
-        <div className="px-5 py-3 border-b border-slate-200 bg-slate-50 font-bold text-xs text-slate-800">
-          Recent Scraped Directory Entries
-        </div>
-        <table className="w-full text-left text-xs">
-          <thead className="bg-slate-50 border-b border-slate-200 text-slate-500 uppercase tracking-wider font-semibold">
-            <tr>
-              <th className="px-5 py-3.5">Contractor / Trade</th>
-              <th className="px-5 py-3.5">Contact & Email</th>
-              <th className="px-5 py-3.5">Location</th>
-              <th className="px-5 py-3.5">Deduplication Status</th>
-              <th className="px-5 py-3.5">Harvested</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-100">
-            {recentHarvestedLeads.map((lead, idx) => (
-              <tr key={idx} className="hover:bg-slate-50/80 transition">
-                <td className="px-5 py-3.5">
-                  <div className="font-semibold text-slate-900">{lead.company}</div>
-                  <div className="text-[11px] text-slate-500">{lead.trade}</div>
-                </td>
-                <td className="px-5 py-3.5">
-                  <div className="text-slate-800 font-medium">{lead.contact}</div>
-                  <div className="text-[11px] text-slate-500 font-mono">{lead.email}</div>
-                </td>
-                <td className="px-5 py-3.5 text-slate-600">{lead.city}</td>
-                <td className="px-5 py-3.5">
-                  <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold ${
-                    lead.status === "SAVED_TO_CRM" ? "bg-emerald-50 text-emerald-700 border border-emerald-200" : "bg-amber-50 text-amber-700 border border-amber-200"
-                  }`}>
-                    {lead.status}
-                  </span>
-                </td>
-                <td className="px-5 py-3.5 text-slate-500 text-[11px]">{lead.date}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      )}
     </div>
   );
 }
